@@ -10,13 +10,13 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-public class RegisterActivity extends AppCompatActivity {
+public class UpdateProfileActivity extends AppCompatActivity {
 
     private EditText usernameText, passwordText, lastnText, firstnText, roleText, uta_idText,
             phoneText, emailText, addressText, cityText, stateText, zipText, licenseText, dobText,
             permitText, carText;
 
-    Button register;
+    Button update;
 
     private String username;
     private String password;
@@ -35,10 +35,17 @@ public class RegisterActivity extends AppCompatActivity {
     private String permit;
     private String car;
 
+    private String new_username = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_update_profile);
         super.onCreate(savedInstanceState);
+
+        Bundle extras = getIntent().getExtras();
+        final String user_name = extras.getString("key");
+
+        new_username = user_name;
 
         usernameText = (EditText) findViewById(R.id.username);
         passwordText = (EditText) findViewById(R.id.password);
@@ -56,9 +63,43 @@ public class RegisterActivity extends AppCompatActivity {
         dobText = (EditText) findViewById(R.id.dob);
         permitText = (EditText) findViewById(R.id.permit);
         carText = (EditText) findViewById(R.id.car);
-        register = (Button) findViewById(R.id.register_button);
+        update = (Button) findViewById(R.id.update_button);
+        RadioButton radio_user = (RadioButton) findViewById(R.id.radio_user);
+        RadioButton radio_manager = (RadioButton) findViewById(R.id.radio_manager);
+        RadioButton radio_admin = (RadioButton) findViewById(R.id.radio_admin);
 
-        register.setOnClickListener(new View.OnClickListener() {
+        UserDatabase rb = Room.databaseBuilder(getApplicationContext(),
+                UserDatabase.class, "database-name").allowMainThreadQueries().build();
+
+        UserDao userDAO = rb.userDao();
+
+        User user = userDAO.getUser(user_name);
+        usernameText.setText(user.getUsername());
+        passwordText.setText(user.getPassword());
+        lastnText.setText(user.getLastn());
+        firstnText.setText(user.getFirstn());
+
+        if (user.getRole() == 1) {
+            radio_user.setChecked(true);
+        } else if (user.getRole() == 2) {
+            radio_manager.setChecked(true);
+        } else {
+            radio_admin.setChecked(true);
+        }
+
+        uta_idText.setText(String.valueOf(user.getUta_id()));
+        phoneText.setText(String.valueOf(user.getPhone()));
+        emailText.setText(user.getEmail());
+        addressText.setText(user.getAddress());
+        cityText.setText(user.getCity());
+        stateText.setText(user.getState());
+        zipText.setText(String.valueOf(user.getZip()));
+        licenseText.setText(user.getLicense());
+        dobText.setText(user.getDob());
+        permitText.setText(user.getPermit());
+        carText.setText(user.getCar());
+
+        update.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 UserDatabase rb = Room.databaseBuilder(getApplicationContext(),
                         UserDatabase.class, "database-name").allowMainThreadQueries().build();
@@ -81,15 +122,17 @@ public class RegisterActivity extends AppCompatActivity {
                 permit = permitText.getText().toString();
                 car = carText.getText().toString();
 
+                new_username = username;
+
                 // Creating user
-                User user = new User(username, password, lastn, firstn, role,
+                User updated_user = new User(username, password, lastn, firstn, role,
                         uta_id, phone, email, address, city,
                         state, zip, license, dob, permit, car);
 
-                userDAO.insert(user);
+                userDAO.update(updated_user);
 
                 // Create toast to confirm new user
-                Toast.makeText(getApplicationContext(), "Registration successful",
+                Toast.makeText(getApplicationContext(), "Profile Updated",
                         Toast.LENGTH_SHORT).show();
 
                 onBackPressed();
@@ -126,6 +169,8 @@ public class RegisterActivity extends AppCompatActivity {
     // On pressing the back button
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        Intent intent = new Intent(this, ViewProfileActivity.class);
+        intent.putExtra("key", new_username);
+        startActivity(intent);
     }
 }

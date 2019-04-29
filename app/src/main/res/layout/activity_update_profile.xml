@@ -8,28 +8,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingBottom="6dp"
-            android:textColor="@color/white"
-            android:text="@string/toolbar_update"
-            android:textSize="20sp" />
-
-    </android.support.v7.widget.Toolbar>
-
+    tools:context=".UpdateProfileActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,16 +38,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/email"
+                    <EditText
+                        android:id="@+id/username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/prompt_email"
-                        android:inputType="textEmailAddress"
+                        android:hint="@string/prompt_username"
+                        android:inputType="text"
                         android:maxLines="1"
                         android:singleLine="true" />
 
@@ -161,12 +141,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/username"
+                    <EditText
+                        android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/prompt_username"
-                        android:inputType="text"
+                        android:hint="@string/prompt_email"
+                        android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:singleLine="true" />
 
@@ -176,14 +156,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/id"
+                    <EditText
+                        android:id="@+id/uta_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/prompt_id"
                         android:inputType="number"
                         android:maxLines="1"
-                        android:singleLine="true"/>
+                        android:singleLine="true" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -191,8 +171,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/first_name"
+                    <EditText
+                        android:id="@+id/firstn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/prompt_first_name"
@@ -206,8 +186,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/last_name"
+                    <EditText
+                        android:id="@+id/lastn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/prompt_last_name"
@@ -221,7 +201,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
+                    <EditText
                         android:id="@+id/phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -236,14 +216,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
+                    <EditText
                         android:id="@+id/dob"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/prompt_dob"
                         android:inputType="date"
                         android:maxLines="1"
-                        android:singleLine="true"/>
+                        android:singleLine="true" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -251,14 +231,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/street"
+                    <EditText
+                        android:id="@+id/address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/prompt_street"
                         android:inputType="textPostalAddress"
                         android:maxLines="1"
-                        android:singleLine="true"/>
+                        android:singleLine="true" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -266,14 +246,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
+                    <EditText
                         android:id="@+id/city"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/prompt_city"
                         android:inputType="textPostalAddress"
                         android:maxLines="1"
-                        android:singleLine="true"/>
+                        android:singleLine="true" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -281,7 +261,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
+                    <EditText
                         android:id="@+id/state"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -296,29 +276,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/country"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/prompt_country"
-                        android:inputType="textPostalAddress"
-                        android:maxLines="1"
-                        android:singleLine="true" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/pin"
+                    <EditText
+                        android:id="@+id/zip"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/prompt_pin"
                         android:inputType="number"
                         android:maxLines="1"
-                        android:singleLine="true" />
+                        android:singleLine="true"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -326,14 +291,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
+                    <EditText
                         android:id="@+id/permit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/prompt_permit"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:singleLine="true"/>
+                        android:singleLine="true" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -341,14 +306,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
+                    <EditText
                         android:id="@+id/car"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/prompt_car"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:singleLine="true"/>
+                        android:singleLine="true" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -356,7 +321,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
+                    <EditText
                         android:id="@+id/license"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

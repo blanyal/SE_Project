@@ -8,27 +8,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingBottom="6dp"
-            android:textColor="@color/white"
-            android:text="@string/toolbar_user"
-            android:textSize="20sp" />
-
-    </android.support.v7.widget.Toolbar>
+    tools:context=".UserHomeActivity">
 
 
     <LinearLayout
@@ -61,12 +41,12 @@
 
 
                 <Button
-                    android:id="@+id/update_profile_button"
+                    android:id="@+id/view_profile_button"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@string/action_update_profile"
+                    android:text="View Profile"
                     android:textStyle="bold" />
 
                 <Button

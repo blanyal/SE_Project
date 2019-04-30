@@ -85,6 +85,14 @@
             android:name=".ModifySpotsActivity"
             android:label="Modify Spot" />
 
+        <activity
+            android:name=".NoshowListActivity"
+            android:label="No Shows/Violations" />
+
+        <activity
+            android:name=".ViewNoshowActivity"
+            android:label="No Show/Violation" />
+
     </application>
 
 </manifest>

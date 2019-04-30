@@ -16,16 +16,16 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewReservedListActivity extends AppCompatActivity implements com.se_project.arlingtonparking.MyRecyclerViewAdapter3.ItemClickListener {
+public class NoshowListActivity extends AppCompatActivity implements com.se_project.arlingtonparking.MyRecyclerViewAdapter4.ItemClickListener {
     Button return_button;
     private String new_username = "";
     private RecyclerView recyclerView;
-    private com.se_project.arlingtonparking.MyRecyclerViewAdapter3 adapter;
+    private com.se_project.arlingtonparking.MyRecyclerViewAdapter4 adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_view_reserved_list);
+        setContentView(R.layout.activity_noshow_list);
         super.onCreate(savedInstanceState);
 
         Bundle extras = getIntent().getExtras();
@@ -45,7 +45,7 @@ public class ViewReservedListActivity extends AppCompatActivity implements com.s
         ReservationDao reserDAO = rb.reservationDao();
         List<Reservation> reservations = reserDAO.getReservationUser(new_username);
 
-        adapter = new com.se_project.arlingtonparking.MyRecyclerViewAdapter3(this, reservations);
+        adapter = new com.se_project.arlingtonparking.MyRecyclerViewAdapter4(this, reservations);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
@@ -58,7 +58,7 @@ public class ViewReservedListActivity extends AppCompatActivity implements com.s
 
     @Override
     public void onItemClick(View view, int position) {
-        Intent intent = new Intent(view.getContext(), ViewReservedActivity.class);
+        Intent intent = new Intent(view.getContext(), ViewNoshowActivity.class);
         ArrayList<String> extra = new ArrayList<>();
         extra.add(String.valueOf(adapter.getItem(position).getUid()));
         extra.add(new_username);
@@ -76,28 +76,28 @@ public class ViewReservedListActivity extends AppCompatActivity implements com.s
     }
 }
 
-class MyRecyclerViewAdapter3 extends RecyclerView.Adapter<com.se_project.arlingtonparking.MyRecyclerViewAdapter3.ViewHolder> {
+class MyRecyclerViewAdapter4 extends RecyclerView.Adapter<com.se_project.arlingtonparking.MyRecyclerViewAdapter4.ViewHolder> {
 
     private List<Reservation> mData;
     private LayoutInflater mInflater;
-    private com.se_project.arlingtonparking.MyRecyclerViewAdapter3.ItemClickListener mClickListener;
+    private com.se_project.arlingtonparking.MyRecyclerViewAdapter4.ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter3(Context context, List<Reservation> data) {
+    MyRecyclerViewAdapter4(Context context, List<Reservation> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
 
     // inflates the row layout from xml when needed
     @Override
-    public com.se_project.arlingtonparking.MyRecyclerViewAdapter3.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public com.se_project.arlingtonparking.MyRecyclerViewAdapter4.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.activity_reserve_spots_list_item, parent, false);
-        return new com.se_project.arlingtonparking.MyRecyclerViewAdapter3.ViewHolder(view);
+        return new com.se_project.arlingtonparking.MyRecyclerViewAdapter4.ViewHolder(view);
     }
 
     // binds the data to the TextView in each row
     @Override
-    public void onBindViewHolder(com.se_project.arlingtonparking.MyRecyclerViewAdapter3.ViewHolder holder, int position) {
+    public void onBindViewHolder(com.se_project.arlingtonparking.MyRecyclerViewAdapter4.ViewHolder holder, int position) {
         Reservation reservation = mData.get(position);
         holder.datetime.setText(reservation.getDatetime());
         holder.area.setText(reservation.getArea());
@@ -119,6 +119,12 @@ class MyRecyclerViewAdapter3 extends RecyclerView.Adapter<com.se_project.arlingt
         } else {
             holder.options.setText("History");
         }
+
+        if (reservation.isNo_show()) {
+            holder.noshow.setText("No Show");
+        } else {
+            holder.noshow.setText("Overdue");
+        }
     }
 
     // total number of rows
@@ -130,7 +136,7 @@ class MyRecyclerViewAdapter3 extends RecyclerView.Adapter<com.se_project.arlingt
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView datetime, type, options, area;
+        TextView datetime, type, options, area, noshow;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -138,6 +144,7 @@ class MyRecyclerViewAdapter3 extends RecyclerView.Adapter<com.se_project.arlingt
             type = itemView.findViewById(R.id.type);
             options = itemView.findViewById(R.id.options);
             area = itemView.findViewById(R.id.area);
+            noshow = itemView.findViewById(R.id.noshow);
             itemView.setOnClickListener(this);
         }
 
@@ -153,7 +160,7 @@ class MyRecyclerViewAdapter3 extends RecyclerView.Adapter<com.se_project.arlingt
     }
 
     // allows clicks events to be caught
-    void setClickListener(com.se_project.arlingtonparking.MyRecyclerViewAdapter3.ItemClickListener itemClickListener) {
+    void setClickListener(com.se_project.arlingtonparking.MyRecyclerViewAdapter4.ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 

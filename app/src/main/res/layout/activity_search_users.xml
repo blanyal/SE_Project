@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".UserHomeActivity">
+    tools:context=".SearchUserActivity">
 
 
     <LinearLayout
@@ -39,51 +39,37 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/lastn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_last_name"
+                        android:inputType="textCapWords"
+                        android:maxLines="1"
+                        android:singleLine="true"/>
+
+                </android.support.design.widget.TextInputLayout>
 
                 <Button
-                    android:id="@+id/view_profile_button"
+                    android:id="@+id/submit_button"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="View Profile"
+                    android:text="@string/action_submit"
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/request_reservation_button"
+                    android:id="@+id/return_button"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@string/action_request_reservation"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/view_reserved_button"
-                    style="?android:textAppearanceSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/action_view_spots"
-                    android:textStyle="bold" />
-
-
-                <Button
-                    android:id="@+id/view_no_shows_button"
-                    style="?android:textAppearanceSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/action_view_no_shows"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/logout_button"
-                    style="?android:textAppearanceSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/action_logout"
+                    android:text="Return"
                     android:textStyle="bold" />
 
             </LinearLayout>

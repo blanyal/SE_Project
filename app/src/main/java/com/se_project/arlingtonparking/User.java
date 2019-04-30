@@ -57,10 +57,17 @@ public class User {
     @ColumnInfo(name = "car")
     public String car;
 
+    @ColumnInfo(name = "reservation")
+    public boolean reservation;
+
+    @ColumnInfo(name = "no_show")
+    public boolean no_show;
+
 
     public User(String username, String password, String lastn, String firstn, int role,
                 int uta_id, int phone, String email, String address, String city,
-                String state, int zip, String license, String dob, String permit, String car) {
+                String state, int zip, String license, String dob, String permit, String car,
+                boolean reservation, boolean no_show) {
         this.username = username;
         this.password = password;
         this.lastn = lastn;
@@ -77,6 +84,8 @@ public class User {
         this.dob = dob;
         this.permit = permit;
         this.car = car;
+        this.reservation = reservation;
+        this.no_show = no_show;
     }
 
 
@@ -207,4 +216,21 @@ public class User {
     public void setCar(String car) {
         this.car = car;
     }
+
+    public boolean isReservation() {
+        return reservation;
+    }
+
+    public void setReservation(boolean reservation) {
+        this.reservation = reservation;
+    }
+
+    public boolean isNo_show() {
+        return no_show;
+    }
+
+    public void setNo_show(boolean no_show) {
+        this.no_show = no_show;
+    }
+
 }

@@ -15,9 +15,10 @@ public class ViewProfileActivity extends AppCompatActivity {
             phoneText, emailText, addressText, cityText, stateText, zipText, licenseText, dobText,
             permitText, carText;
 
-    Button update;
+    Button update, return_button;
 
     private String new_username = "";
+    private int role = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         permitText = findViewById(R.id.permit);
         carText = findViewById(R.id.car);
         update = (Button) findViewById(R.id.update_button);
+        return_button = (Button) findViewById(R.id.return_button);
 
         UserDatabase rb = Room.databaseBuilder(getApplicationContext(),
                 UserDatabase.class, "database-name").allowMainThreadQueries().build();
@@ -63,6 +65,8 @@ public class ViewProfileActivity extends AppCompatActivity {
         } else {
             roleText.setText("Role: Admin");
         }
+
+        role = user.getRole();
 
         uta_idText.setText("UTA ID: " + String.valueOf(user.getUta_id()));
         phoneText.setText("Phone: " + String.valueOf(user.getPhone()));
@@ -84,13 +88,26 @@ public class ViewProfileActivity extends AppCompatActivity {
             }
         });
 
+        return_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
     }
 
     // On pressing the back button
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, UserHomeActivity.class);
-        intent.putExtra("key", new_username);
-        startActivity(intent);
+        if (role == 1) {
+            Intent intent = new Intent(this, UserHomeActivity.class);
+            intent.putExtra("key", new_username);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, AdminHomeActivity.class);
+            intent.putExtra("key", new_username);
+            startActivity(intent);
+        }
+
     }
 }

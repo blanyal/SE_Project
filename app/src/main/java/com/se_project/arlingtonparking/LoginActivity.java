@@ -57,9 +57,17 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Login Success",
                             Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(v.getContext(), UserHomeActivity.class);
-                    intent.putExtra("key", user.getUsername());
-                    startActivity(intent);
+                    if (user.getRole() == 1) {
+                        Intent intent = new Intent(v.getContext(), UserHomeActivity.class);
+                        intent.putExtra("key", user.getUsername());
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(v.getContext(), AdminHomeActivity.class);
+                        intent.putExtra("key", user.getUsername());
+                        startActivity(intent);
+                    }
+
+
                 } else {
                     Toast.makeText(getApplicationContext(), "Login Failed",
                             Toast.LENGTH_SHORT).show();

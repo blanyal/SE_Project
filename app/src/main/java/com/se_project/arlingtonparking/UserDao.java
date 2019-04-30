@@ -19,6 +19,9 @@ public interface  UserDao {
     @Query("SELECT * FROM user WHERE username LIKE :first LIMIT 1")
     User getUser(String first);
 
+    @Query("SELECT * FROM user WHERE lastn LIKE :first")
+    List<User> searchUser(String first);
+
     @Insert
     void insert(User... users);
 

@@ -7,22 +7,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class UserHomeActivity extends AppCompatActivity {
-    Button view_profile_button, request_reservation_button, view_reserved_button,
-            modify_reserved_button, cancel_reservation_button, view_no_shows_button, logout_button;
+public class AdminHomeActivity extends AppCompatActivity {
+    Button view_profile_button, search_user_button, logout_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_user_home);
+        setContentView(R.layout.activity_admin_home);
         super.onCreate(savedInstanceState);
 
         Bundle extras = getIntent().getExtras();
         final String username = extras.getString("key");
 
         view_profile_button = (Button) findViewById(R.id.view_profile_button);
-        request_reservation_button = (Button) findViewById(R.id.request_reservation_button);
-        view_reserved_button = (Button) findViewById(R.id.view_reserved_button);
-        view_no_shows_button = (Button) findViewById(R.id.view_no_shows_button);
+        search_user_button = (Button) findViewById(R.id.search_user_button);
         logout_button = (Button) findViewById(R.id.logout_button);
 
         view_profile_button.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +36,14 @@ public class UserHomeActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
 
                 onBackPressed();
+            }
+        });
+
+        search_user_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), SearchUsersActivity.class);
+                intent.putExtra("key", username);
+                startActivity(intent);
             }
         });
 

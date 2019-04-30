@@ -16,7 +16,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
             phoneText, emailText, addressText, cityText, stateText, zipText, licenseText, dobText,
             permitText, carText;
 
-    Button update;
+    Button update, retrn;
 
     private String username;
     private String password;
@@ -64,6 +64,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         permitText = (EditText) findViewById(R.id.permit);
         carText = (EditText) findViewById(R.id.car);
         update = (Button) findViewById(R.id.update_button);
+        retrn = (Button) findViewById(R.id.return_button);
         RadioButton radio_user = (RadioButton) findViewById(R.id.radio_user);
         RadioButton radio_manager = (RadioButton) findViewById(R.id.radio_manager);
         RadioButton radio_admin = (RadioButton) findViewById(R.id.radio_admin);
@@ -73,7 +74,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         UserDao userDAO = rb.userDao();
 
-        User user = userDAO.getUser(user_name);
+        final User user = userDAO.getUser(user_name);
         usernameText.setText(user.getUsername());
         passwordText.setText(user.getPassword());
         lastnText.setText(user.getLastn());
@@ -127,7 +128,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 // Creating user
                 User updated_user = new User(username, password, lastn, firstn, role,
                         uta_id, phone, email, address, city,
-                        state, zip, license, dob, permit, car);
+                        state, zip, license, dob, permit, car, user.isReservation(), user.isNo_show());
 
                 userDAO.update(updated_user);
 
@@ -135,6 +136,13 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Profile Updated",
                         Toast.LENGTH_SHORT).show();
 
+                onBackPressed();
+            }
+        });
+
+
+        retrn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 onBackPressed();
             }
         });

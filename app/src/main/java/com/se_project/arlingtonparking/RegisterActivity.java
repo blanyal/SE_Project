@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
                 // Creating user
                 User user = new User(username, password, lastn, firstn, role,
                         uta_id, phone, email, address, city,
-                        state, zip, license, dob, permit, car);
+                        state, zip, license, dob, permit, car, false, false);
 
                 userDAO.insert(user);
 

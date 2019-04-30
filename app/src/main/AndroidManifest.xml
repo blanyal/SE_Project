@@ -42,6 +42,17 @@
             android:name=".ViewProfileActivity"
             android:label="View Profile" />
 
+        <activity
+            android:name=".AdminHomeActivity"
+            android:label="@string/toolbar_admin" />
+
+        <activity
+            android:name=".SearchUsersActivity"
+            android:label="Search for User" />
+
+        <activity
+            android:name=".SearchUsersResultsActivity"
+            android:label="User Search Results" />
 
     </application>
 

@@ -61,6 +61,30 @@
             android:name=".AdminUpdateProfileActivity"
             android:label="Modify User Profile" />
 
+        <activity
+            android:name=".ReserveSpotsActivity"
+            android:label="Reserve Spots" />
+
+        <activity
+            android:name=".ReserveSpotsListActivity"
+            android:label="Reserve Spots List" />
+
+        <activity
+            android:name=".ViewReserveSpotActivity"
+            android:label="Reserve Spot" />
+
+        <activity
+            android:name=".ViewReservedListActivity"
+            android:label="Reserved Spots" />
+
+        <activity
+            android:name=".ViewReservedActivity"
+            android:label="Reserved Spot" />
+
+        <activity
+            android:name=".ModifySpotsActivity"
+            android:label="Modify Spot" />
+
     </application>
 
 </manifest>

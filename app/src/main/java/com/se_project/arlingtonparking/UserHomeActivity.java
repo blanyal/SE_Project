@@ -5,11 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 public class UserHomeActivity extends AppCompatActivity {
     Button view_profile_button, request_reservation_button, view_reserved_button,
-            modify_reserved_button, cancel_reservation_button, view_no_shows_button, logout_button;
+            view_no_shows_button, logout_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,22 @@ public class UserHomeActivity extends AppCompatActivity {
         view_profile_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ViewProfileActivity.class);
+                intent.putExtra("key", username);
+                startActivity(intent);
+            }
+        });
+
+        view_reserved_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ViewReservedListActivity.class);
+                intent.putExtra("key", username);
+                startActivity(intent);
+            }
+        });
+
+        request_reservation_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ReserveSpotsActivity.class);
                 intent.putExtra("key", username);
                 startActivity(intent);
             }

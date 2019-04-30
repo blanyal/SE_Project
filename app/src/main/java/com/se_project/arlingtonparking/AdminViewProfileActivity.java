@@ -123,6 +123,8 @@ public class AdminViewProfileActivity extends AppCompatActivity {
 
                 userDAO.update(user);
 
+                reservationText.setText("Is Revoked: " + user.isReservation());
+
                 // Create toast to confirm new user
                 Toast.makeText(getApplicationContext(), "Revoked User",
                         Toast.LENGTH_SHORT).show();

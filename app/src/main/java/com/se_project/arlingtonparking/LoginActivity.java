@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import java.util.List;
+import java.util.Random;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -33,6 +36,49 @@ public class LoginActivity extends AppCompatActivity {
 
         login = (Button) findViewById(R.id.login_in_button);
         register = (Button) findViewById(R.id.register_button);
+
+        UserDatabase rv = Room.databaseBuilder(getApplicationContext(),
+                UserDatabase.class, "database-name").allowMainThreadQueries().build();
+
+        ReservationDao reservationDAO = rv.reservationDao();
+
+        List<Reservation> reservations = reservationDAO.getAll();
+
+        if (reservations.isEmpty()) {
+            reservationDAO.insert(new Reservation(0, "30/April/2019 01:00:PM", 1,
+                    2, "", false, false, false,"West Garage"));
+
+            reservationDAO.insert(new Reservation(1, "30/April/2019 02:00:PM", 1,
+                    2, "", false, false, false, "Maverick"));
+
+            reservationDAO.insert(new Reservation(2, "30/April/2019 03:00:PM", 2,
+                    2, "", false, false, false,"Davis"));
+
+            reservationDAO.insert(new Reservation(3, "30/April/2019 04:00:PM", 2,
+                    2, "", false, false, false,"West Garage"));
+
+            reservationDAO.insert(new Reservation(4, "30/April/2019 05:00:PM", 2,
+                    2, "", false, false, false,"Maverick"));
+
+            reservationDAO.insert(new Reservation(5, "30/April/2019 06:00:PM", 2,
+                    2, "", false, false, false,"Nedderman"));
+
+            reservationDAO.insert(new Reservation(6, "30/April/2019 07:00:PM", 2,
+                    2, "", false, false, false,"West Garage"));
+
+            reservationDAO.insert(new Reservation(7, "30/April/2019 08:00:PM", 3,
+                    2, "", false, false, false,"Maverick"));
+
+            reservationDAO.insert(new Reservation(8, "30/April/2019 09:00:PM", 3,
+                    2, "", false, false, false,"Davis"));
+
+            reservationDAO.insert(new Reservation(9, "30/April/2019 10:00:PM", 4,
+                    2, "", false, false, false,"Nedderman"));
+
+            reservationDAO.insert(new Reservation(10, "30/April/2019 11:00:PM", 4,
+                    2, "", false, false, false,"Davis"));
+
+        }
 
         register.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

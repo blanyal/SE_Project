@@ -54,6 +54,13 @@
             android:name=".SearchUsersResultsActivity"
             android:label="User Search Results" />
 
+        <activity
+            android:name=".AdminViewProfileActivity"
+            android:label="User Profile" />
+        <activity
+            android:name=".AdminUpdateProfileActivity"
+            android:label="Modify User Profile" />
+
     </application>
 
 </manifest>

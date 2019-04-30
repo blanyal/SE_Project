@@ -21,6 +21,7 @@ import java.util.List;
 public class SearchUsersResultsActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
     Button return_button;
     private String new_username = "";
+    private String last_name = "";
     private RecyclerView recyclerView;
     private MyRecyclerViewAdapter adapter;
 
@@ -36,7 +37,7 @@ public class SearchUsersResultsActivity extends AppCompatActivity implements MyR
         final String lastn = extra.get(0);
 
         new_username = user_name;
-
+        last_name = lastn;
 
         return_button = (Button) findViewById(R.id.return_button);
         recyclerView = (RecyclerView) findViewById(R.id.search_user_results_list);
@@ -54,7 +55,6 @@ public class SearchUsersResultsActivity extends AppCompatActivity implements MyR
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
-
         return_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onBackPressed();
@@ -64,7 +64,13 @@ public class SearchUsersResultsActivity extends AppCompatActivity implements MyR
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(view.getContext(), AdminViewProfileActivity.class);
+        ArrayList<String> extra = new ArrayList<>();
+        extra.add(last_name);
+        extra.add(new_username);
+        extra.add(adapter.getItem(position).getUsername());
+        intent.putExtra("key", extra);
+        startActivity(intent);
     }
 
     // On pressing the back button
